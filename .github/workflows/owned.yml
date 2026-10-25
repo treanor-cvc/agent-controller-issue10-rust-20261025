@@ -1,0 +1,18 @@
+name: Owned Rust contract
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  required-ci:
+    name: required-ci
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install pinned Rust
+        shell: pwsh
+        run: rustup toolchain install 1.98.0 --profile minimal --component rustfmt
+      - name: Formatting
+        run: cargo fmt --all -- --check
+      - name: Behavioral tests
+        run: cargo test --workspace --locked
