@@ -1,0 +1,5 @@
+name: Owned reference boundary contract
+description: Real hosted Rust boundary assertions with narrow source attribution
+runs:
+  using: node24
+  main: index.js
